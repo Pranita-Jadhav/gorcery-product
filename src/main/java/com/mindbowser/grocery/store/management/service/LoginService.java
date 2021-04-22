@@ -20,9 +20,8 @@ public class LoginService {
 	
 
 	public SuperAdmin newRegistration(@Valid LoginDto loginDto) {
-		// TODO Auto-generated method stub
 		Optional<SuperAdmin> isSuperAdmin = superAdminRepository.findByEmail(loginDto.getEmail());
-		if (isSuperAdmin.isPresent()) {
+		if (isSuperAdmin.isPresent() && loginDto.getPassword() == isSuperAdmin.get().getPassword()) {
 			
 			return isSuperAdmin.get();
 		}
